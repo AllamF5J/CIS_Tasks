@@ -35,7 +35,7 @@ int main()
   if (studentID % 10 != 5) 
   {
     printf("Invalid ID. \n");
-
+    
     return 0;
   }
 
@@ -45,16 +45,13 @@ int main()
   {
     printf("Subject %i : ", index + 1);
     scanf("%f", &grades[index]);
+    totalMark += grades[index];
   }
   printf("\n");
 
   // Calculate percentage
-  for (index = 0; index < SUBJECT_NUMBER; ++index) 
-  {
-    totalMark += grades[index];
-  }
   totalMark /= SUBJECT_NUMBER;
-  Grade = (unsigned int)totalMark;
+  Grade = (unsigned int)totalMark; 
 
   // Display the percentage
   printf("Percentage: %0.2f%%  ", totalMark);
@@ -99,4 +96,3 @@ int main()
   
   return 0;
 }
-
