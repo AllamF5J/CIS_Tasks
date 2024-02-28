@@ -18,6 +18,7 @@ _Bool check_student(unsigned int studentID, unsigned int studentPass);
 void storeAllGrades(unsigned int array[][SUBJECT_NUMBER], unsigned int rows);
 void displayAllGrades(unsigned int array[][SUBJECT_NUMBER], unsigned int rows);
 void display_grade();
+void display_result(float totalMark);
 
 int main()
 {
@@ -142,7 +143,26 @@ void storeAllGrades(unsigned int array[][SUBJECT_NUMBER], unsigned int rows)
     {
       printf("%s : ", subjectName[index2]);
       scanf("%u", &array[index1][index2]);
+      totalMark += (float)array[index1][index2];
     }
+    totalMark /= (SUBJECT_NUMBER - 1);
+
+    // Print percentage and overall rating.
+    printf("\nPercentage: %0.2f%%  ", totalMark);
+    display_result(totalMark);
+
+    // Motivating sentence
+    if (totalMark > 50.0)
+    {
+      printf("\nCongratulations, Your hard work paid off. \n");
+    }
+    else
+    {
+      printf("\nKeep trying, Success is a journey, not a destination. \n");
+    }
+    
+    totalMark = 0;
+
     printf("\n");
   }
 }
@@ -187,4 +207,28 @@ void display_grade(unsigned int index)
 
   printf("\nThanks for using my application <3");
   Sleep(5000);
+}
+
+void display_result(float totalMarks)
+{
+  if (totalMarks >= 85.0)
+  {
+    printf("Excellent \n");
+  }
+  else if (totalMarks >= 75.0)
+  {
+    printf("Very Good \n");
+  }
+  else if (totalMarks >= 65.0)
+  {
+    printf("Good \n");
+  }
+  else if (totalMarks >= 50.0)
+  {
+    printf("Pass \n");
+  }
+  else
+  {
+    printf("You Failed Successfully ^_^ \n");
+  }
 }
