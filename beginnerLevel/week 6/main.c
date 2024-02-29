@@ -119,9 +119,6 @@ int main()
                                                                         : "string1 is equal to string2");
   */
 
-  getchar();
-  getchar();
-
   return 0;
 }
 
