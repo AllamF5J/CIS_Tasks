@@ -37,7 +37,7 @@ void mergeSort(signed int array[], unsigned int begin, unsigned int end)
 
 void merge(signed int array[], unsigned int begin, unsigned int mid, unsigned int end)
 {
-  unsigned int arrayCounter = begin;
+  unsigned int arrayIndex = begin;
   unsigned int leftCounter = 0, rightCounter = 0;
   unsigned int elementCountLeft = mid - begin + 1;
   unsigned int elementCountRight = end - mid;
@@ -46,6 +46,11 @@ void merge(signed int array[], unsigned int begin, unsigned int mid, unsigned in
   // I should using dynamic memory allocate.
   signed int *leftArray = (signed int *)calloc(elementCountLeft, sizeof(signed int));
   signed int *rightArray = (signed int *)calloc(elementCountRight, sizeof(signed int));
+
+  if(!leftArray || !rightArray)
+  {
+    return;
+  }
 
   for (leftCounter = 0; leftCounter < elementCountLeft; ++leftCounter)
   {
@@ -62,22 +67,22 @@ void merge(signed int array[], unsigned int begin, unsigned int mid, unsigned in
   {
     if (leftArray[leftCounter] <= rightArray[rightCounter])
     {
-      array[arrayCounter++] = leftArray[leftCounter++];
+      array[arrayIndex++] = leftArray[leftCounter++];
     }
     else
     {
-      array[arrayCounter++] = rightArray[rightCounter++];
+      array[arrayIndex++] = rightArray[rightCounter++];
     }
   }
 
   while (leftCounter < elementCountLeft)
   {
-    array[arrayCounter++] = leftArray[leftCounter++];
+    array[arrayIndex++] = leftArray[leftCounter++];
   }
 
   while (rightCounter < elementCountRight)
   {
-    array[arrayCounter++] = rightArray[rightCounter++];
+    array[arrayIndex++] = rightArray[rightCounter++];
   }
 
   free(leftArray);
