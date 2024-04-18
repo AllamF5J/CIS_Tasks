@@ -19,13 +19,7 @@
 *****************************************************************************
 */
 
-#include <stdio>
-
-#include "Card/card.h"
-#include "Terminal/terminal.h"
-#include "Server/server.h"
 #include "Application/application.h"
-#include "type.h"
 
 int main()
 {
