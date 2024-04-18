@@ -227,7 +227,7 @@ linkedList_status_t Delete_Node_At_End(node_ds_t *List)
   {
     listLength = Get_Length(List, &L_retVal);
 
-    if ((listLength > 1) && (L_retVal == ZERO))
+    if ((listLength >= 1) && (L_retVal == ZERO))
     {
       retVal = LINKED_LIST_OK;
       node_ds_t *tempNode = List;
@@ -240,15 +240,13 @@ linkedList_status_t Delete_Node_At_End(node_ds_t *List)
       free(tempNode->NodeLink);
       tempNode->NodeLink = NULL;
     }
-    else if (listLength == 1)
+    else if (listLength == 0)
     {
-      retVal = LINKED_LIST_OK;
-
-      free(List);
+      retVal = LINKED_LIST_EMPTY;
     }
     else
     {
-      retVal = LINKED_LIST_EMPTY;
+      retVal = LINKED_LIST_NOK;
     }
   }
   else
