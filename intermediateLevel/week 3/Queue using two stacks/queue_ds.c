@@ -49,13 +49,13 @@ queue_status_t Enqueue(queue_ds_t *myQueue, uint32_t item_ptr)
 {
   queue_status_t retVal = QUEUE_NOK;
 
-  if (NULL != myQueue)
+  if (NULL != myQueue) // O(1)
   {
-    if (stack_status(&(myQueue->stack1)) != STACK_FULL)
+    if (stack_status(&(myQueue->stack1)) != STACK_FULL) // O(1)
     {
       retVal = QUEUE_OK;
 
-      stack_push(&(myQueue->stack1), item_ptr);
+      stack_push(&(myQueue->stack1), item_ptr); // O(1)
     }
     else
     {
@@ -67,7 +67,7 @@ queue_status_t Enqueue(queue_ds_t *myQueue, uint32_t item_ptr)
     retVal = QUEUE_NULL_POINTER;
   }
 
-  return retVal;
+  return retVal; // Over All time Complexity of the Enqueue is O(1)
 }
 
 queue_status_t Dequeue(queue_ds_t *myQueue, uint32_t *ValueOut)
@@ -75,24 +75,24 @@ queue_status_t Dequeue(queue_ds_t *myQueue, uint32_t *ValueOut)
   queue_status_t retVal = QUEUE_NOK;
   uint32_t Value = ZERO_INIT;
 
-  if (NULL != myQueue)
+  if (NULL != myQueue) // O(1)
   {
-    if (NULL != ValueOut)
+    if (NULL != ValueOut) // O(1)
     {
       retVal = QUEUE_OK;
 
-      if (stack_status(&(myQueue->stack2)) == STACK_EMPTY)
+      if (stack_status(&(myQueue->stack2)) == STACK_EMPTY) // O(1)
       {
         while (stack_status(&(myQueue->stack1)) != STACK_EMPTY)
         {
-          stack_pop(&(myQueue->stack1), &Value);
-          stack_push(&(myQueue->stack2), Value);
-        }
+          stack_pop(&(myQueue->stack1), &Value); // O(1)
+          stack_push(&(myQueue->stack2), Value); // O(1)
+        }                                        // In worst case O(n), n is the number of the element in the queue.
       }
 
-      if (stack_status(&(myQueue->stack2)) != STACK_EMPTY)
+      if (stack_status(&(myQueue->stack2)) != STACK_EMPTY) // O(1)
       {
-        stack_pop(&(myQueue->stack2), ValueOut);
+        stack_pop(&(myQueue->stack2), ValueOut); // O(1)
       }
       else
       {
@@ -109,7 +109,7 @@ queue_status_t Dequeue(queue_ds_t *myQueue, uint32_t *ValueOut)
     retVal = QUEUE_NULL_POINTER;
   }
 
-  return retVal;
+  return retVal; // Over All time Complexity of the Dequeue is O(n) in worst case and O(1) in average case.
 }
 
 queue_status_t queue_front(queue_ds_t *myQueue, uint32_t *Value)
